@@ -5,6 +5,8 @@ abstract class Worker<U extends Worker, T extends Task>{
 
     private Queue<T> taskQueue = new Queue<T>();
 
+    private Inventory inventory;
+
     public Worker(WorkSpace<U, T> workSpace){
         this.workSpace = workSpace;
     }

@@ -23,5 +23,8 @@ public class Inventory {
         reorderThresholds.put(name, reorderThreshold);
     }
 
+    public void removeInventoryItems(Ingredient[] ingredients){
+    }
+
 
 }

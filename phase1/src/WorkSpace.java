@@ -15,7 +15,7 @@ abstract class WorkSpace<U extends Worker, T extends Task> {
         taskQueue.add(task);
     }
 
-    public void sendTask(T task){
+    private void sendTask(T task){
         restaurant.receiveTask(task);
     }
 

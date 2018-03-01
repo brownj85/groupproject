@@ -1,4 +1,6 @@
-abstract class Task {
+import java.util.Observable;
+
+abstract class Task extends Observable {
 
     private boolean completed = false;
 

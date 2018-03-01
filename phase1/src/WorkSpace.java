@@ -28,6 +28,4 @@ abstract class WorkSpace<U extends Worker, T extends Task> {
         workerManager.chooseWorker(task);
     }
 
-    public abstract void processTask(T task);
-
 }

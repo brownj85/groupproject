@@ -1,22 +1,13 @@
 import java.util.ArrayList;
 
-abstract class WorkerManager {
+abstract class WorkerManager<T extends Worker, U extends Task>{
 
-    private ArrayList<Worker> workers = new ArrayList<Worker>();
+    protected ArrayList<T> workers;
 
-    private EventQueue eventQueue = new EventQueue();
-
-    public void addWorker(Worker worker){
+    public void addWorker(T worker){
         workers.add(worker);
     }
 
-    public void receiveEvent(Event e){
-        eventQueue.add(e);
-    }
-
-    public void sendEvent(Event e, Worker w){
-        w.receiveEvent(e);
-    }
-
+    public abstract void chooseWorker(U task);
 
 }

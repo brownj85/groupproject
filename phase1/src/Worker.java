@@ -1,36 +1,20 @@
 
-abstract class Worker {
+abstract class Worker<U extends Worker, T extends Task>{
 
-    private static int numWorkers;
+    private WorkSpace<U, T> workSpace;
 
-    private static WorkerManager manager;
+    private Queue<T> taskQueue = new Queue<T>();
 
-    private int id;
-
-    private EventQueue eventQueue = new EventQueue();
-
-    public Worker(){
-        this.id = numWorkers;
-        numWorkers++;
-        manager.addWorker(this);
+    public Worker(WorkSpace<U, T> workSpace){
+        this.workSpace = workSpace;
     }
 
-    public void receiveEvent(Event e){
-        this.eventQueue.add(e);
+    public void sendTask(T task){
+        workSpace.receiveTask(task);
     }
 
-    public void processEvent(){}
-
-    public void sendEvent(Event e){
-        manager.receiveEvent(e);
+    public void giveTask(T task){
+        taskQueue.add(task);
     }
-
-    public int getQueueSize(){
-        return eventQueue.getSize();
-    }
-
-
-
-
-
+    
 }

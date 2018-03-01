@@ -9,6 +9,10 @@ abstract class Worker<U extends Worker, T extends Task>{
         this.workSpace = workSpace;
     }
 
+    public int numTasks(){
+        return taskQueue.size();
+    }
+
     public void sendTask(T task){
         workSpace.receiveTask(task);
     }

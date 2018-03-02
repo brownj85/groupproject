@@ -41,7 +41,7 @@ public class Dish extends Task {
     }
 
     public ArrayList<Ingredient> getIngredients() {
-        ArrayList<Ingredient> allIngredients = new ArrayList<Ingredient>(baseIngredients);
+        ArrayList<Ingredient> allIngredients = new ArrayList<>(baseIngredients);
         for (Adjustment adjustment : adjustments) {
             if (adjustment.isAddition()) {
                 allIngredients.addAll(adjustment.getIngredients());
@@ -73,13 +73,10 @@ public class Dish extends Task {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Dish) {
-            return name.equals(((Dish) o).getName())
-                    && basePrice == ((Dish) o).getBasePrice()
-                    && baseIngredients.equals(((Dish) o).getBaseIngredients())
-                    && adjustments.equals(((Dish) o).getAdjustments());
-        } else {
-            return false;
-        }
+        return o instanceof Dish
+                && name.equals(((Dish) o).getName())
+                && basePrice == ((Dish) o).getBasePrice() 
+                && baseIngredients.equals(((Dish) o).getBaseIngredients())
+                && adjustments.equals(((Dish) o).getAdjustments());
     }
 }

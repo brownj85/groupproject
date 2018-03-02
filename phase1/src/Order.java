@@ -16,6 +16,7 @@ public class Order extends Task implements Observer {
 
     public void addDish(Dish d) {
         dishes.add(d);
+        d.addObserver(this);
     }
 
     public double getPrice() {

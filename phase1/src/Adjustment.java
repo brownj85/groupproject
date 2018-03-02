@@ -4,7 +4,7 @@ public class Adjustment {
     private String name;
     private double price;
     private boolean addition; // true if this Adjustment is an addition. false if it is a subtraction
-    private ArrayList ingredients;
+    private ArrayList<Ingredient> ingredients;
 
     public Adjustment(String name, double price, ArrayList<Ingredient> ingredients,
                       boolean addition) {
@@ -18,7 +18,7 @@ public class Adjustment {
         return addition;
     }
 
-    public ArrayList getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
 
@@ -32,12 +32,9 @@ public class Adjustment {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Adjustment) {
-            return name.equals(((Adjustment) o).getName())
-                    && price == ((Adjustment) o).getPrice()
-                    && ingredients.equals(((Adjustment) o).getIngredients());
-        } else {
-            return false;
-        }
+        return o instanceof Adjustment
+                && name.equals(((Adjustment) o).getName())
+                && price == ((Adjustment) o).getPrice()
+                && ingredients.equals(((Adjustment) o).getIngredients());
     }
 }

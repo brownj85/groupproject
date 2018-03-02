@@ -3,15 +3,15 @@ import java.util.ArrayList;
 public class Dish extends Task {
     private String name;
     private double basePrice;
-    private ArrayList<Ingredient> ingredients;
+    private ArrayList<Ingredient> baseIngredients;
     private ArrayList<Adjustment> possAdjustments;
     private ArrayList<Adjustment> adjustments = new ArrayList<>();
 
-    public Dish(String name, double basePrice, ArrayList<Ingredient> ingredients,
+    public Dish(String name, double basePrice, ArrayList<Ingredient> baseIngredients,
                 ArrayList<Adjustment> possAdjustments) {
         this.name = name;
         this.basePrice = basePrice;
-        this.ingredients = ingredients;
+        this.baseIngredients = baseIngredients;
         this.possAdjustments = possAdjustments;
     }
 
@@ -36,8 +36,20 @@ public class Dish extends Task {
         return basePrice;
     }
 
+    public ArrayList<Ingredient> getBaseIngredients() {
+        return baseIngredients;
+    }
+
     public ArrayList<Ingredient> getIngredients() {
-        return ingredients;
+        ArrayList<Ingredient> allIngredients = new ArrayList<Ingredient>(baseIngredients);
+        for (Adjustment adjustment : adjustments) {
+            if (adjustment.isAddition()) {
+                allIngredients.addAll(adjustment.getIngredients());
+            } else {
+                allIngredients.removeAll(adjustment.getIngredients());
+            }
+        }
+        return allIngredients;
     }
 
     public String getName() {
@@ -64,7 +76,7 @@ public class Dish extends Task {
         if (o instanceof Dish) {
             return name.equals(((Dish) o).getName())
                     && basePrice == ((Dish) o).getBasePrice()
-                    && ingredients.equals(((Dish) o).getIngredients())
+                    && baseIngredients.equals(((Dish) o).getBaseIngredients())
                     && adjustments.equals(((Dish) o).getAdjustments());
         } else {
             return false;

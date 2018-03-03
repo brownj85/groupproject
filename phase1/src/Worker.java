@@ -15,7 +15,7 @@ abstract class Worker<U extends Worker, T extends Task>{
         return taskQueue.size();
     }
 
-    private void sendTask(T task){
+    public void sendTask(T task){
         workSpace.receiveTask(task);
     }
 

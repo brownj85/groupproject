@@ -22,6 +22,12 @@ public class Server extends Worker {
         currOrder.addDish(dish);
     }
 
+    public void sendCurrentOrder(){
+        sendTask(currOrder);
+        currOrder = null;
+
+    }
+
     // Still need to add other methods
 
 

@@ -6,6 +6,8 @@ abstract class Task extends Observable {
 
     public void complete(){
         this.completed = true;
+        setChanged();
+        notifyObservers();
     }
 
     public boolean isCompleted(){

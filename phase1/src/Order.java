@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Observable;
 import java.util.Observer;
 
@@ -43,3 +44,14 @@ public class Order extends Task implements Observer {
         }
     }
 }
+=======
+
+public class Order extends Task {
+
+    private ArrayList<Dish> dishes;
+
+    public Dish[] getDishes(){
+        return null;
+    }
+}
+>>>>>>> 8c318d711a4149b79611b32202bffa271b17a423

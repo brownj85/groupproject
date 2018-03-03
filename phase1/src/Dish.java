@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 public class Dish extends Task {
@@ -78,5 +79,13 @@ public class Dish extends Task {
                 && basePrice == ((Dish) o).getBasePrice() 
                 && baseIngredients.equals(((Dish) o).getBaseIngredients())
                 && adjustments.equals(((Dish) o).getAdjustments());
+=======
+public class Dish extends Task {
+
+    private Ingredient[] ingredients;
+
+    public Ingredient[] getIngredients(){
+        return null;
+>>>>>>> 8c318d711a4149b79611b32202bffa271b17a423
     }
 }

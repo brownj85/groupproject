@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.util.Observable;
 
 public class Ingredient extends Observable {
@@ -57,7 +56,4 @@ public class Ingredient extends Observable {
             return o instanceof Ingredient && name.equals(((Ingredient) o).getName());
         }
     }
-=======
-public class Ingredient {
->>>>>>> 8c318d711a4149b79611b32202bffa271b17a423
 }

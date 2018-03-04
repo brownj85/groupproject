@@ -16,9 +16,8 @@ public class Server extends Worker {
         this.tables.add(table);
     }
 
-    public void createOrder(Table table){
-        Order newOrder = new Order(this, table);
-        this.currOrder = newOrder;
+    public void createnewOrder(Table table){
+         this.currOrder = new Order(this, table);
     }
 
     public void updateOrder(Dish dish){
@@ -44,20 +43,30 @@ public class Server extends Worker {
 
     }
 
+    public void getNewCompletedOrder(){
+        if (numTasks() != 0){
+            currOrder = (Order) getTask();
+        }
+    }
+
     // Deliever an order assuming there's no complaints, and prepared is true
-    private void delieverOrder(Order order){
-        Table table = order.getTable();
-        double newbill = table.getBill() + order.getPrice();
-        table.setBill(newbill);
-        currOrder = null;
+    private void delieverOrder(){
+        if (!currOrder.equals(null)) {
+            Table table = currOrder.getTable();
+            double newbill = table.getBill() + currOrder.getPrice();
+            table.setBill(newbill);
+            currOrder = null;
+        }
 
     }
 
 
     // NOTE: THIS IS NOT DONE, NEED TO ASK GROUP MEMBERS EXACTLY WHAT'S SUPPOSED TO HAPPEN HERE
-    private void adjustOrder(Order order, Dictionary<Dish, Adjustment> adjustments){
+    private void adjustOrder(Dictionary<Dish, Adjustment> adjustments){
         // Note, probably need to be able to say if Dish if complete or not?
-        currOrder = null;
+        if (!currOrder.equals(null)){
+            currOrder = null;
+        }
 
 
     }

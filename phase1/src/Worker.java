@@ -22,5 +22,6 @@ abstract class Worker<U extends Worker, T extends Task>{
     public void giveTask(T task){
         taskQueue.add(task);
     }
-    
+
+    public T getTask() {return taskQueue.pop();}
 }

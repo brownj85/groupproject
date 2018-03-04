@@ -5,7 +5,7 @@ public class Server extends Worker {
 
     private Order currOrder;
     private ArrayList<Table> tables;
-    private Dish currDish;
+
 
     public Server(FrontHouse frontHouse, ArrayList<Table> tables){
         super(frontHouse);
@@ -23,7 +23,7 @@ public class Server extends Worker {
 
     public void updateOrder(Dish dish){
         currOrder.addDish(dish);
-        currDish = dish;
+
     }
 
     public void AdjustDish(Dish dish, Adjustment a, boolean add){
@@ -49,6 +49,7 @@ public class Server extends Worker {
         Table table = order.getTable();
         double newbill = table.getBill() + order.getPrice();
         table.setBill(newbill);
+        currOrder = null;
 
     }
 
@@ -56,8 +57,17 @@ public class Server extends Worker {
     // NOTE: THIS IS NOT DONE, NEED TO ASK GROUP MEMBERS EXACTLY WHAT'S SUPPOSED TO HAPPEN HERE
     private void adjustOrder(Order order, Dictionary<Dish, Adjustment> adjustments){
         // Note, probably need to be able to say if Dish if complete or not?
+        currOrder = null;
 
 
+    }
+
+    public void setCurrOrder(Order order){
+        currOrder = order;
+    }
+
+    public ArrayList<Table> getTables(){
+        return this.tables;
     }
 
 

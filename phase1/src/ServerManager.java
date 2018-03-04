@@ -1,14 +1,22 @@
 import java.util.ArrayList;
-public class ServerManager extends WorkerManager {
+public class ServerManager<S, O> extends WorkerManager {
 
-    // Change this to ArrayList
-    public ServerManager(Server[] servers){
-        for (Server server: servers){
-            this.addWorker(server);
-        }
+    public ServerManager(ArrayList<Server> servers){
+        workers = servers;
+
     }
     // TODO: Complete this
     public void chooseWorker(Task task){
+        Table table = ((Order)task).getTable();
+        // Unsure about this
+        for (Object server : workers){
+            if (((Server)server).getTables().contains(task)){
+                Order order = (Order)task;
+                ((Server) server).setCurrOrder(order);
+            }
+
+    }
+
 
     }
 }

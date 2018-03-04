@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Dictionary;
+
 public class Server extends Worker {
 
     private Order currOrder;
@@ -41,6 +43,27 @@ public class Server extends Worker {
         currOrder = null;
 
     }
+
+    // Deliever an order assuming there's no complaints, and prepared is true
+    private void delieverOrder(Order order){
+        Table table = order.getTable();
+        double newbill = table.getBill() + order.getPrice();
+        table.setBill(newbill);
+
+    }
+
+
+    // NOTE: THIS IS NOT DONE, NEED TO ASK GROUP MEMBERS EXACTLY WHAT'S SUPPOSED TO HAPPEN HERE
+    private void adjustOrder(Order order, Dictionary<Dish, Adjustment> adjustments){
+        // Note, probably need to be able to say if Dish if complete or not?
+
+
+    }
+
+
+
+
+
 
     // Still need to add other methods
 

@@ -46,4 +46,8 @@ public class Order extends Task implements Observer {
             notifyObservers();
         }
     }
+
+    public Table getTable() {
+        return table;
+    }
 }

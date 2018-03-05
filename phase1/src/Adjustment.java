@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Adjustment {
     private String name;
     private double price;
     private boolean addition; // true if this Adjustment is an addition. false if it is a subtraction
-    private ArrayList<Ingredient> ingredients;
+    private HashMap<String, Integer> ingredients;
 
-    public Adjustment(String name, double price, ArrayList<Ingredient> ingredients,
+    public Adjustment(String name, double price, HashMap<String, Integer> ingredients,
                       boolean addition) {
         this.name = name;
         this.price = price;
@@ -18,7 +18,7 @@ public class Adjustment {
         return addition;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public HashMap<String, Integer> getIngredients() {
         return ingredients;
     }
 

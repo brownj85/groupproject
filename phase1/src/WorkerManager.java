@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
-abstract class WorkerManager<T extends Worker, U extends Task>{
+abstract class WorkerManager<T extends Worker>{
+
+    private HashMap<Integer, Order> orders = new HashMap<>();
 
     protected ArrayList<T> workers;
 
@@ -8,6 +11,6 @@ abstract class WorkerManager<T extends Worker, U extends Task>{
         workers.add(worker);
     }
 
-    public abstract void chooseWorker(U task);
+    public abstract void chooseWorker(Order order);
 
 }

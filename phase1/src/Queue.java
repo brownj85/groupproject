@@ -20,4 +20,8 @@ public class Queue<T> {
         return this.queue.size();
     }
 
+    public void remove(T e){
+        queue.remove(e);
+    }
+
 }

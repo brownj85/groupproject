@@ -1,31 +1,32 @@
-abstract class WorkSpace<U extends Worker, T extends Task> {
+import java.util.*;
+
+abstract class WorkSpace<U extends Worker> {
 
     private Restaurant restaurant;
 
-    private WorkerManager<U, T> workerManager;
+    private WorkerManager<U> workerManager;
 
-    private Queue<T> taskQueue = new Queue<>();
+    private Queue<Order> orderQueue = new Queue<>();
 
-    public WorkSpace(Restaurant restaurant, WorkerManager<U, T> workerManager){
+    public WorkSpace(Restaurant restaurant, WorkerManager<U> workerManager){
         this.restaurant = restaurant;
         this.workerManager = workerManager;
     }
 
-    public void receiveTask(T task){
-        taskQueue.add(task);
+    public void receiveOrder(Order order){
+        orderQueue.add(order);
     }
 
-    private void sendTask(T task){
-        restaurant.receiveTask(task);
+    private void sendOrder(Order order){
+        restaurant.receiveTask(order);
     }
 
-    public T getTask(){
-        return taskQueue.pop();
+    public Order getOrder(){
+        return orderQueue.pop();
     }
 
-    public void assignTask(){
-        T task = taskQueue.pop();
-        workerManager.chooseWorker(task);
+    public void assignOrder(Order order){
+        workerManager.chooseWorker(order);
     }
 
 }

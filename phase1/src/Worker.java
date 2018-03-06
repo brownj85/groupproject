@@ -1,29 +1,45 @@
+import java.util.HashMap;
 
-abstract class Worker<U extends Worker, T extends Task> {
+abstract class Worker<U extends Worker>{
 
-    private WorkSpace<U, T> workSpace;
+    private WorkSpace<U> workSpace;
 
-    private Queue<T> taskQueue = new Queue<T>();
+    private Queue<Integer> orderIdQueue = new Queue<>();
+
+    private HashMap<Integer, Order> orders = new HashMap<>();
 
     private Inventory inventory;
 
-    public Worker(WorkSpace<U, T> workSpace) {
+    public Worker(WorkSpace<U> workSpace) {
         this.workSpace = workSpace;
     }
 
-    public int numTasks() {
-        return taskQueue.size();
+    public int numOrders() {
+        return orderIdQueue.size();
     }
 
-    public void sendTask(T task) {
-        workSpace.receiveTask(task);
+    public void sendOrder(Order order){
+        workSpace.receiveOrder(order);
     }
 
-    public void giveTask(T task) {
-        taskQueue.add(task);
+    public void giveOrder(Order order){
+        orderIdQueue.add(order.id());
+        orders.put(order.id(), order);
+
     }
 
-    public T getTask() {
-        return taskQueue.pop();
+    public Order getOrder(){
+        return orders.get(orderIdQueue.getPop());
     }
+
+    public Order getOrder(int id){
+        return orders.get(id);
+    }
+
+    public void completeOrder(int id){
+        orderIdQueue.remove(id);
+        Order order = orders.remove(id);
+        workSpace.receiveOrder(order);
+    }
+
 }

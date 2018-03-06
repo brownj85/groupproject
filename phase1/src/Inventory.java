@@ -23,7 +23,8 @@ public class Inventory {
         reorderThresholds.put(name, reorderThreshold);
     }
 
-    public void removeInventoryItems(Ingredient[] ingredients){
+    public boolean removeInventoryItems(HashMap<String, Integer> ingredients){
+        return false;
     }
 
 

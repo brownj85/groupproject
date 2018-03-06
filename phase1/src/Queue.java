@@ -8,6 +8,10 @@ public class Queue<T> {
         return queue.remove(0);
     }
 
+    public T getPop(){
+        return queue.get(0);
+    }
+
     public void add(T e){
         this.queue.add(e);
     }

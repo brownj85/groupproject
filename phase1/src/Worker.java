@@ -1,5 +1,5 @@
 
-abstract class Worker<U extends Worker, T extends Task>{
+abstract class Worker<U extends Worker, T extends Task> {
 
     private WorkSpace<U, T> workSpace;
 
@@ -7,21 +7,23 @@ abstract class Worker<U extends Worker, T extends Task>{
 
     private Inventory inventory;
 
-    public Worker(WorkSpace<U, T> workSpace){
+    public Worker(WorkSpace<U, T> workSpace) {
         this.workSpace = workSpace;
     }
 
-    public int numTasks(){
+    public int numTasks() {
         return taskQueue.size();
     }
 
-    public void sendTask(T task){
+    public void sendTask(T task) {
         workSpace.receiveTask(task);
     }
 
-    public void giveTask(T task){
+    public void giveTask(T task) {
         taskQueue.add(task);
     }
 
-    public T getTask() {return taskQueue.pop();}
+    public T getTask() {
+        return taskQueue.pop();
+    }
 }

@@ -13,15 +13,7 @@ public class Cook extends Worker<Cook, Dish> {
         this.inventory = inventory;
     }
 
-    public boolean completeDish(Dish dish){
-        if (inventory.removeInventoryItems(dish.getIngredients())){
-            dish.complete();
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+
 
 
 

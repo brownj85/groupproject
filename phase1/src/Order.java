@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,6 +27,21 @@ public class Order extends Task implements Observer {
 
     public ArrayList<Dish> getDishes() {
         return dishes;
+    }
+
+    public HashMap<String, Integer> allIngredients(){
+        HashMap<String, Integer> result = new HashMap<String, Integer>();
+
+
+        for (Dish dish: dishes){
+            HashMap curr = dish.getIngredients();
+            for (Object o: curr.keySet()){
+                String key = (String) o;
+                result.merge(key, (Integer) curr.get(key), (a,b) -> a + b);
+            }
+        }
+
+        return result;
     }
 
     public double getPrice() {

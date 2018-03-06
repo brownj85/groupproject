@@ -3,7 +3,7 @@ import java.util.*;
 
 class OrderManager implements Observer{
 
-    private HashSet<Order> orders = new HashSet<>();
+    private HashMap<Integer, Order> orders = new HashMap<>();
 
     private Restaurant restaurant;
 
@@ -12,13 +12,17 @@ class OrderManager implements Observer{
     }
 
     protected void addOrder(Order order){
-        orders.add(order);
+        orders.put(order.id(), order);
         order.addObserver(this);
+    }
+
+    public Order getOrderByID(int id){
+        return orders.get(id);
     }
 
     public void update(Observable observable, Object o){
         Order order = (Order) observable;
-        orders.remove(order);
+        orders.remove(order.id());
         restaurant.receiveTask(order);
     }
 

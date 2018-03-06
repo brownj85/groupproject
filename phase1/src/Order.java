@@ -4,14 +4,19 @@ import java.util.Observer;
 
 public class Order extends Task implements Observer {
 
+    static int numOrders = 0;
+
     private boolean prepared = false;
     private Server server;
     private Table table;
     private ArrayList<Dish> dishes = new ArrayList<Dish>();
+    private int orderID;
 
     public Order(Server server, Table table) {
         this.server = server;
         this.table = table;
+        this.orderID = numOrders;
+        numOrders++;
     }
 
     public void addDish(Dish d) {
@@ -49,5 +54,9 @@ public class Order extends Task implements Observer {
 
     public Table getTable() {
         return table;
+    }
+
+    public int id(){
+        return this.orderID;
     }
 }

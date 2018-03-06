@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Cook extends Worker<Cook, Dish> {
 
     private Inventory inventory;
 
-    private HashSet<Order> orders = new HashSet<>(); 
+    private HashMap<Integer, Order> orders = new HashMap<>();
 
     public Cook(Kitchen kitchen, Inventory inventory){
         super(kitchen);
@@ -15,7 +16,6 @@ public class Cook extends Worker<Cook, Dish> {
     public boolean completeDish(Dish dish){
         if (inventory.removeInventoryItems(dish.getIngredients())){
             dish.complete();
-            super.sendTask(dish);
             return true;
         }
         else{

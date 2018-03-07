@@ -6,28 +6,27 @@ public class Adjustment {
 
     private String name;
 
-    private HashMap<String, Integer> ingredients = new HashMap<>();
+    private HashMap<String, Integer> ingredients;
 
     private Double price;
 
     private int sign;
 
-    public Adjustment(String name, Double price, ArrayList<Pair<String, Integer>> ingredientPairs){
-        this.name = name;
+    public Adjustment(String name, Double price, ArrayList<Pair<String, Integer>> ingredientPairs, boolean positive){
         this.price = price;
-        this.sign = 1;
 
-        for (Pair<String, Integer> pair: ingredientPairs){
-            ingredients.put(pair.getKey(), pair.getValue());
+        if (positive){
+            this.sign = 1;
+            this.name = "(+) " + name;
         }
-    }
+        else{
+            this.sign = -1;
+            this.name = "(-) " + name;
+        }
 
-    public void setAddition(){
-        this.sign = 1;
-    }
-
-    public void setSubtraction(){
-        this.sign = -1;
+        for (Pair<String, Integer> ingredientPair: ingredientPairs){
+            ingredients.put(ingredientPair.getKey(), ingredientPair.getValue());
+        }
     }
 
     public Double getPrice(){
@@ -43,10 +42,12 @@ public class Adjustment {
         return this.name;
     }
 
-    public Double price(){
-        return this.price;
+    public int sign(){
+      return this.sign;
     }
 
-
+    public HashMap<String, Integer> ingredients(){
+        return this.ingredients;
+    }
 
 }

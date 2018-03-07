@@ -6,7 +6,7 @@ public class Dish {
 
     private HashMap<String, Integer> ingredients = new HashMap<>();
 
-    private ArrayList<Adjustment> possibleAdjustments;
+    private HashMap<String, Adjustment> possibleAdjustments;
 
     private ArrayList<String> currAdjustments = new ArrayList<>();
 
@@ -15,15 +15,17 @@ public class Dish {
     private String name;
 
     public Dish(String name, Double price, ArrayList<Pair<String, Integer>> ingredientPairs,
-                ArrayList<Adjustment> possAdjustments){
+                ArrayList<Pair<String, Adjustment>> adjustmentPairs){
         this.name = name;
         this.price = price;
-        this.possibleAdjustments = possAdjustments;
+
+        for (Pair<String, Adjustment> pair: adjustmentPairs){
+            possibleAdjustments.put(pair.getKey(), pair.getValue());
+        }
 
         for (Pair<String, Integer> pair: ingredientPairs){
             ingredients.put(pair.getKey(), pair.getValue());
         }
-        
     }
 
     public String name(){
@@ -33,6 +35,25 @@ public class Dish {
     public Double price(){
         return this.price;
     }
+
+    public void addAdjustment(String name){
+        Adjustment adj = this.possibleAdjustments.get(name);
+        this.currAdjustments.add(name);
+        mergeIngredientTable(adj.ingredients(), this.ingredients, adj.sign());
+    }
+
+    public void removeAdjustment(String name){
+        Adjustment adj = this.possibleAdjustments.get(name);
+        this.currAdjustments.remove(name);
+        mergeIngredientTable(adj.ingredients(), this.ingredients, adj.sign() * -1);
+    }
+
+    protected void mergeIngredientTable(HashMap<String, Integer> source, HashMap<String, Integer> target, int sign){
+        for (String key: source.keySet()){
+            target.put(key, Math.max(target.get(key) + sign * source.get(key), 0));
+        }
+    }
+
 
 
 

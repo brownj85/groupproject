@@ -40,14 +40,19 @@ public class Dish {
         Adjustment adj = this.possibleAdjustments.get(name);
         this.currAdjustments.add(name);
         mergeIngredientTable(adj.ingredients(), this.ingredients, adj.sign());
+        this.price = adj.getPrice() + this.price;
     }
 
     public void removeAdjustment(String name){
         Adjustment adj = this.possibleAdjustments.get(name);
         this.currAdjustments.remove(name);
         mergeIngredientTable(adj.ingredients(), this.ingredients, adj.sign() * -1);
-    }
 
+        if (adj.getPrice() > 0){
+            this.price = this.price + adj.getPrice();
+        }
+
+    }
     protected void mergeIngredientTable(HashMap<String, Integer> source, HashMap<String, Integer> target, int sign){
         for (String key: source.keySet()){
             target.put(key, Math.max(target.get(key) + sign * source.get(key), 0));
